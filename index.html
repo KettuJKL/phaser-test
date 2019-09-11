@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -52,6 +52,8 @@
         var stars;
         var player;
         var cursors;
+        var score = 0;
+        var scoreText;
 
         function create() {
             // game board
@@ -111,6 +113,9 @@
 
             this.physics.add.collider(stars, platforms);
             this.physics.add.overlap(player, stars, collectStar, null, this)
+
+            // score board
+            scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
         }
 
         function update() {
@@ -137,6 +142,9 @@
 
         function collectStar(player, star) {
             star.disableBody(true, true);
+
+            score += 10;
+            scoreText.setText('Score: ' + score);
         }
 
     </script>
